@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout/layout :: head"></head>
+<body class="bg-dark">
+	<header th:replace="/layout/layout :: header"></header>
+	<div class="container">
+		<div class="card mt-5">
+			<div class="card-header">Detalles de la factura</div>
+			<div class="card-body">				
+				<form th:action="@{/factura/facturaNew}" th:object="${factura}"
+					method="POST">
+					<div class="form-group row my-2">
+						<label class="col-sm-2 col-form-label">N° Factura</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control"  th:field="*{id}" disabled/>
+						</div>
+					</div>
+					<div class="form-group row my-2">
+						<label class="col-sm-2 col-form-label">Cliente</label>
+						<div class="col-sm-6">
+							<input  class="form-control" th:value="${costumer.name}"
+								disabled />
+						</div>
+					</div>
+					<div class="form-group row my-2">
+						<label class="col-sm-2 col-form-label">Nit</label>
+						<div class="col-sm-6">
+							<input  class="form-control" th:value="${costumer.nit}"
+								disabled />
+						</div>
+					</div>	
+					<div class="form-group row my-2">
+						<label class="col-sm-2 col-form-label">Personeria</label>
+						<div class="col-sm-6">
+							<input  class="form-control" th:value="${costumer.tipoPersoneria}"
+								disabled />
+						</div>
+					</div>					
+					<div class="form-group row my-2">
+						<label class="col-sm-2 col-form-label">Fecha</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" th:field="*{createAt}" placeholder="dd-MM-yyyy" th:errorclass="'form-control alert-danger'"/>
+							<small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('createAt')}"
+								th:errors="*{createAt}"></small> 
+						</div>
+					</div>
+					<div class="form-group row my-2">
+						<label class="col-sm-2 col-form-label">Descripción</label>
+						<div class="col-sm-6">
+							<input type="text"class="form-control" th:field="*{description}"/>
+							<small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('description')}"
+								th:errors="*{description}"></small>
+						</div>
+					</div>
+					<div class="form-group row my-2">
+						<label class="col-sm-2 col-form-label">Observación</label>
+						<div class="col-sm-6">
+							<textarea  class="form-control" rows="3" th:field="*{observation}"></textarea>
+						</div>
+					</div>
+					<div class="form-group row my-2">
+						<label class="col-sm-2 col-form-label">Producto</label>
+						<div class="col-sm-6">
+							<input type="text"  class="form-control" th:field="*{product}"/>
+							<small class="form-text text-danger"
+								th:if="${#fields.hasErrors('product')}" th:errors="*{product}"></small>
+						</div>
+					</div>
+					<div class="form-group row my-2">
+						<label class="col-sm-2 col-form-label">Total</label>
+						<div class="col-sm-6">
+							<input type="number"  class="form-control" th:field="*{precio}"/>
+							<small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}"></small>
+						</div>
+					</div>
+					<div class="form-group row mt-4">
+						<div class="col-sm-6">
+							<input type="submit" value="Guardar Cambios"
+								class="btn btn-secondary" />
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+
+	</div>
+
+
+	<footer th:replace="/layout/layout :: footer"></footer>
+
+</body>
+</html>

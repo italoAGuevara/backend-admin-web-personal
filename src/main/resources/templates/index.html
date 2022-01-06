@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body class="bg-dark">
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container text-light">
+	<h3 class="my-4">Panel Principal</h3>
+		<div class="row">		
+			<section class="col" th:replace="windows/tasks/tasks :: listCostumerByContact"></section>
+		</div>
+	</div>
+
+
+
+	<footer th:replace="layout/layout :: footer"></footer>
+
+</body>
+</html>

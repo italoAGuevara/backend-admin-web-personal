@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body class="bg-dark">
+	<header th:replace="/layout/layout :: header"></header>
+	<div class="container">
+	<h3 class="col-10 text-light mt-4">Crear nuevo cliente</h3>
+	<div class="card mt-3">
+	<div class="card-header">Datos Cliente</div>
+	<div class="card-body">
+				
+		<form th:action="@{/costumerNew}" th:object="${costumer}" method="POST">
+			<div class="row">
+				<div class="form-group col-3">
+					<label><b>* Nit</b></label> <input type="text"
+						class="form-control" th:errorclass="'form-control alert-danger'" placeholder="Nit" th:field="*{nit}">
+						<small	class="form-text text-danger"
+								th:if="${#fields.hasErrors('nit')}" th:errors="*{nit}"></small>
+				</div>				
+				<div class="form-group col-2">
+					<label><b>* T-Personeria</b></label> <select
+						th:field="*{tipoPersoneria}" 
+						class="form-control" th:errorclass="'form-control alert-danger'">
+						<option  value=""></option>
+						<option  value="natural">Natural</option>
+						<option  value="juridica">Juridica</option>				
+					</select>
+					<small	class="form-text text-danger"
+								th:if="${#fields.hasErrors('tipoPersoneria')}" th:errors="*{tipoPersoneria}"></small>
+				</div>
+				<div class="form-group col-7">
+					<label><b>* Razón Social</b></label> <input type="text"
+						class="form-control" th:errorclass="'form-control alert-danger'" placeholder="Razón Social" th:field="*{name}">
+						<small	class="form-text text-danger"
+								th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>					 
+				</div>
+				<div class="form-group col-md-6 mt-5">
+					<label><b>* Dirección 1</b></label> <input type="text"
+						class="form-control" placeholder="Dirección1" th:field="*{adrress1}" th:errorclass="'form-control alert-danger'">
+						<small	class="form-text text-danger"
+								th:if="${#fields.hasErrors('adrress1')}" th:errors="*{adrress1}"></small>
+				</div>
+				<div class="form-group col-md-6 mt-5">
+					<label><b>Dirección 2 (Opcional)</b></label> <input type="text"
+						class="form-control" placeholder="Direcció2" th:field="*{adrress2}">
+				</div>
+				<div class="form-group col-md-3 mt-5">
+					<label><b>* Teléfono 1</b></label> <input type="text"
+						class="form-control" placeholder="Teléfono1" th:field="*{phone1}" th:errorclass="'form-control alert-danger'">
+						<small	class="form-text text-danger"
+								th:if="${#fields.hasErrors('phone1')}" th:errors="*{phone1}"></small>
+						
+				</div>
+				<div class="form-group col-md-3 mt-5">
+					<label><b>Teléfono 2 (Opcional)</b></label> <input type="text"
+						class="form-control" placeholder="Teléfono2" th:field="*{phone2}" >
+				</div>
+				<div class="form-group col-md-6 mt-5">
+					<label><b>Correo Eléctronico (Opcional)</b></label> <input type="text"
+						class="form-control" placeholder="Correo" th:field="*{email}">
+				</div>
+			</div>
+			<button type="submit" class="btn btn-primary btn-sm mt-5">Crear / Guardar</button>
+		</form>
+		</div>
+		</div>
+	</div>
+	<footer th:replace="/layout/layout :: footer"></footer>
+</body>
+</html>

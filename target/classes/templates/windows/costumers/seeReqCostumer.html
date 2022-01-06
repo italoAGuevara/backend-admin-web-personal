@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body class="bg-dark">
+	<header th:replace="layout/layout :: header"></header>
+	<section class="container mt-5">
+		<div class="card">
+			<div class="card-header">Información del solicitante</div>
+			<!-- Form -->
+			<div class="card-body">
+				<form th:action="@{/listRequest}" th:object="${reqCostumer}"
+					method="POST">
+					<!-- El id no se muestra pero es necesario para la persistecia-->
+					<div class="d-none">
+						<input type="text" class="form-control" th:field="*{id}">
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label"><b>Nombre</b></label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" th:field="*{name}">
+						</div>
+					</div>
+					<div class="form-group row mt-3">
+						<label class="col-sm-2 col-form-label"><b>Telefono</b></label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" th:field="*{phone}">
+						</div>
+					</div>
+					<div class="form-group row mt-3">
+						<label class="col-sm-2 col-form-label"><b>Email</b></label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" th:field="*{email}">
+						</div>
+					</div>
+					<div class="form-group row mt-3">
+						<label class="col-sm-2 col-form-label"><b>Fecha</b></label>
+						<div class="col-sm-10">
+							<input type="date" class="form-control" th:field="*{createAt}"
+								disabled>
+						</div>
+					</div>
+					<div class="form-group row mt-3">
+						<label class="col-sm-2 col-form-label"><b>Mensaje</b></label>
+						<div class="col-sm-10">
+							<textarea class="form-control" rows="4" th:field="*{message}"></textarea>
+						</div>
+					</div>
+					<div class="form-group row mt-3">
+						<div class="col-sm-2">
+							<b>Contactado ?</b>
+						</div>
+						<div class="col-sm-10">
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" id="gridCheck1"
+									th:field="*{contacted}">
+							</div>
+						</div>
+					</div>
+					<div class="form-group row mt-5">
+						<div class="col-sm-10 mx-3">
+							<a> <input type="submit" class="btn btn-primary"
+								value="Guardar"></a>
+						</div>
+						<div class="col-sm-1">
+							<a th:href="@{/deleteReqCostumer/} + ${reqCostumer.id}"> <input
+								type="button" class="btn btn-outline-danger btn-sm"
+								value="Borrar"></a>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+
+
+	</section>
+
+
+
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

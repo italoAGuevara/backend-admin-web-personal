@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body class="bg-dark">
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container">
+	<h3 class="col-10 text-light mt-4">Clientes</h3>
+		<div class="row  mt-4">			
+			<!-- search -->
+			<div class="card">
+				<div class="card-header">
+					<div class="col-2">						
+						<a th:href="@{/costumerNew}"><button
+								class="btn btn-primary btn-sm" type="submit">Crear</button></a>
+					</div>
+				</div>
+				<div class="card-body col border mt-4">
+					<!-- Table -->
+					<table class="text-black table table-striped">
+						<thead>
+							<tr>
+								<th>Nit</th>
+								<th>Nombre</th>
+								<th>Telefono</th>
+								<th>Email</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="costumer: ${listCostumers}">
+								<td th:text="${costumer.nit}"></td>
+								<td th:text="${costumer.name}"></td>
+								<td th:text="${costumer.phone1}"></td>
+								<td th:text="${costumer.email}"></td>
+								<td><a th:href="@{/costumerEdit/} + ${costumer.id}"><input
+										class="btn btn-primary btn-sm" type="button" value="Ver"></a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,18 @@
+#sesion{
+	margin-right: 80px;
+}
+form{
+	margin-right: 100px;
+}
+#icon{
+	font-size: 25px;
+}
+footer{
+	margin-top:50px;
+	position: static;
+	bottom: 0px;
+	width: 100%;
+}
+p{
+	font-size: 12px;
+}

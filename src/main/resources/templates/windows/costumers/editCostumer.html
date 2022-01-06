@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body class="bg-dark">
+	<header th:replace="/layout/layout :: header"></header>
+	<div class="container">
+		<div class="card mt-3">
+			<div class="card-body">
+				<form th:action="@{/costumerNew}" th:object="${costumer}"
+					method="POST">
+					<div class="card-header">
+						<h3 th:text="${'Cliente: '} + ${costumer.name}"></h3>
+						<div class="row">
+							<div class="col-11">
+								<input type="submit" class="btn btn-primary btn-sm mt-3"
+									value="Guardar Cambios">
+							</div>
+							<div class="col-1">
+							<a th:href="@{/deleteCostumer/} + ${costumer.id}">
+								<input type="button" class="btn btn-outline-danger btn-sm mt-3"
+									value="Eliminar"></a>
+							</div>
+						</div>
+					</div>
+
+
+
+					<div class="row">
+
+						<input type="text" class="d-none" placeholder="Nit"
+							th:field="*{id}">
+						<div class="form-group col-3 mt-4">
+							<label><b>* Nit</b></label> <input type="text"
+								class="form-control" placeholder="Nit" th:field="*{nit}">
+						</div>
+						<div class="form-group col-6 mt-4">
+							<label><b>* Razón Social</b></label> <input type="text"
+								class="form-control" placeholder="Razón Social"
+								th:field="*{name}">
+						</div>
+						<div class="form-group col-3 mt-4">
+							<label><b>* Tipo de Personeria</b></label> <input type="text"
+								class="form-control" placeholder="Razón Social"
+								th:field="*{tipoPersoneria}">
+						</div>
+						<div class="form-group col-md-6 mt-4">
+							<label><b>* Dirección 1</b></label> <input type="text"
+								class="form-control" placeholder="Dirección1"
+								th:field="*{adrress1}">
+						</div>
+						<div class="form-group col-md-6 mt-4">
+							<label><b>Dirección 2 (Opcional)</b></label> <input type="text"
+								class="form-control" placeholder="Direcció2"
+								th:field="*{adrress2}">
+						</div>
+						<div class="form-group col-md-3 mt-4">
+							<label><b>* Teléfono 1</b></label> <input type="text"
+								class="form-control" placeholder="Teléfono1"
+								th:field="*{phone1}">
+						</div>
+						<div class="form-group col-md-3 mt-4">
+							<label><b>Teléfono 2 (Opcional)</b></label> <input type="text"
+								class="form-control" placeholder="Teléfono2"
+								th:field="*{phone2}">
+						</div>
+						<div class="form-group col-md-6 mt-4">
+							<label><b>Correo Eléctronico (Opcional)</b></label> <input
+								type="text" class="form-control" placeholder="Correo"
+								th:field="*{email}">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<!-- List Proyects -->
+		<div class="card my-3 py-4 ">
+			<div class="card-header">
+				<b>Facturas del cliente</b>
+			</div>
+			<div class="card-body">
+				<div th:if="${#lists.isEmpty(costumer.facturas)}"
+					class="alert alert-info m-4"
+					th:text="'No hay facturas asginadas para el cliente:  ' + ${costumer.name}"></div>
+				<a th:href="@{/factura/form/} + ${costumer.id}"><input
+					class="btn btn-success btn-sm mx-5" type="button" value="Crear Factura"></a>
+				<table th:if="${not #lists.isEmpty(costumer.facturas)}"
+					class="table table-striped my-5">
+					<thead class="border">
+						<tr class="border">
+							<th class="border">N°</th>
+							<th class="border">Descripción</th>
+							<th class="border">Fecha</th>
+							<th class="border">Total</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="factura: ${costumer.facturas}">
+							<td th:text="${factura.id}"></td>
+							<td th:text="${factura.description}"></td>
+							<td th:text="${factura.createAt}"></td>
+							<td th:text="${factura.precio}"></td>
+							<td><a th:href="@{/factura/facturaShow/} + ${factura.id} + '/' +  ${costumer.id}"><input class="btn btn-primary btn-sm" type="button"
+									value="Ver"></a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="/layout/layout :: footer"></footer>
+</body>
+</html>

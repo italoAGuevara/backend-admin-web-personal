@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body class="bg-dark">
+	<header th:replace="layout/layout :: header"></header>
+	<section class="container mt-5">
+		<div class="card">
+			<div class="card-header">Historico de Solicitudes de Clientes</div>
+			<!-- Table -->
+			<div class="card-body">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>N° Solicitud</th>
+						<th>Nombre</th>
+						<th>Telefono</th>
+						<th>Email</th>
+						<th>Fecha</th>
+						<th>Contactado ?</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="costumer: ${costumers}">
+						<td th:text="${costumer.id}"></td>
+						<td th:text="${costumer.name}"></td>
+						<td th:text="${costumer.phone}"></td>
+						<td th:text="${costumer.email}"></td>
+						<td th:text="${costumer.createAt}"></td>
+						<td th:text="${costumer.contacted}"></td>
+						<td><a th:href="@{/listRequest/} + ${costumer.id}"><input
+								class="btn btn-primary btn-sm" type="button" value="Ver"></a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			</div>
+		</div>
+	</section>
+
+
+
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
